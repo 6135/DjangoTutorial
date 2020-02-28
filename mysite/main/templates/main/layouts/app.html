@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Prism CSS -->
+  {% load static %}<link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">  
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://streamonion.com/kinnith/fontawesome/css/all.css"></link>
+  <title>E-Shop</title>
+
+  {% block loaders %} {% endblock loaders %}
+
+  <style>
+    body {
+      overflow-x: hidden !important;
+    }
+  </style>
+</head>
+
+<body>
+  {% block bar %}
+  <!-- default navbar | may be overwritten-->
+    <style>
+    .nav-search-item {
+      border-top-style: solid;
+      border-top-color: white;
+    }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top d-flex">
+        <div class="navbar-header d-flex mr-auto">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-bars" style="color: white"></i>
+          </button> 
+          {% comment '' %}
+          <a class="navbar-brand active" href="{{action('Index@index')}}">&nbsp;Home</a>
+          {% endcomment %} 
+        </div>
+        <ul class="navbar-nav d-flex">
+          @if (isset($Menus))
+            @foreach ($Menus as $menu)
+              @if(isset($menu['Cart']) && $menu['Cart'] == true)
+                <li class="nav-item"> 
+                  {% comment ''%}
+                  <a class="nav-link" href="{{$menu['href']}}"><i class='far fa-shopping-cart'></i>&nbsp;{{$menu['name']}}</a>
+                  {% endcomment %}
+                </li>
+              @else
+                <li class="nav-item">
+                {% comment ''%}  
+                  <a class="nav-link" href="{{$menu['href']}}">{{$menu['name']}}</a>
+                {% endcomment %}
+                </li>
+              @endif
+            @endforeach
+          @endif
+        </ul>
+    </nav>
+  {% endblock bar %}
+
+  {% block content %}
+  <!-- include the content here-->
+  {% endblock content %}
+
+
+  {% block footer %}
+  <!-- default footer | may be overwritten-->
+    <footer class="page-footer font-small blue pt-4">
+      <!-- Copyright -->
+      <div class="row">
+        <div class="footer-copyright text-center py-3 col-sm-6 float-left">@2020 LES
+        </div>
+        <div class="footer-copyright text-center py-3 col-sm-6 float-right">Design by:
+          a61172
+        </div>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  {% endblock footer %}
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+  {% load static %} <script src="{% static "js/card-hover.js" %}"></script>
+  <!-- Prism JS -->
+  <script src="{% static "tinymce/js/prism.js" %}"></script>  
+  {% block scripts %}
+  {% endblock scripts %}
+</body>
+
+</html>

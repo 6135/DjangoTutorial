@@ -79,7 +79,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_test',
         'USER': 'root',
-        'PASSWORD': 'FnC$76P',
         'OPTIONS':{
             'autocommit':True,
         },
