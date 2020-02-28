@@ -1,0 +1,13 @@
+{% load static %}
+<!-- Prism CSS -->
+<link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet"
+
+{% for p in post %}
+    <p>{{p.test_title}}</p>
+    <p>{{p.test_published}}</p>
+    <p>{{p.test_content | safe}}</p>
+    <br>
+{% endfor %}
+
+<!-- Prism JS -->
+<script src="{% static "tinymce/js/prism.js" %}"></scr

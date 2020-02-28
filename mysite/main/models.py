@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 
-class Test(models.Model):
+class Post(models.Model):
     test_title = models.CharField(max_length=200)
     test_content = models.TextField()
     test_published = models.DateTimeField('published at', default=datetime.now)
