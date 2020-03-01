@@ -13,7 +13,6 @@ class Category(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     image = models.CharField(max_length=255, blank=True, null=True)
 
-
 class Customer(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(unique=True, max_length=255, blank=True, null=True)
@@ -28,26 +27,17 @@ class Customer(models.Model):
     reset_digest = models.CharField(max_length=255, blank=True, null=True)
     reset_sent_at = models.DateTimeField(blank=True, null=True)
 
-
-
-
 class OrderItem(models.Model):
     order = models.ForeignKey('Order', models.DO_NOTHING)
     product = models.ForeignKey('Product', models.DO_NOTHING)
     quantity = models.IntegerField(blank=True, null=True)
-
-
-
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, models.DO_NOTHING)
     created_at = models.DateTimeField()
     status = models.IntegerField(blank=True, null=True)
     total = models.IntegerField(blank=True, null=True)
-
-
-
-
+    
 class Product(models.Model):
     cat = models.ForeignKey(Category, models.DO_NOTHING)
     name = models.CharField(max_length=255, blank=True, null=True)
