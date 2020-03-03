@@ -1,16 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+from django.urls import *
+
 #from .models import Post
-
 # Create your views here.
-
-def login(request):
-
-    return render(request = request,
-        template_name='main/login/login_template.html',
-        context = {'cart': 1},
-        )
 
 def homepage(request):
     cart = True
@@ -22,12 +16,19 @@ def homepage(request):
             'products': Product.objects.all, 
             'Categories': Category.objects.all,
             'Menus': [{
-                "name": "Ola", "href": "#"
+                "name": "Login", "href": reverse('main:login')
                 },{
-                "name": "Ola2","href": "#"
+                "name": "Register","href": "#"
                 },
             ]
         })
+
+def login(request):
+
+    return render(request = request,
+        template_name='main/login/login_template.html',
+        context = {},
+        )
 
 def catPage(request, cat_id = None):
     if cat_id != None:
