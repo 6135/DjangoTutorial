@@ -33,28 +33,23 @@
           <button type="button" id="sidebarCollapse" class="btn btn-info">
               <i class="fas fa-bars" style="color: white"></i>
           </button> 
-          {% comment '' %}
-          <a class="navbar-brand active" href="{{action('Index@index')}}">&nbsp;Home</a>
-          {% endcomment %} 
-        </div>
+          
+          <a class="navbar-brand active" href="action('Index@index')">&nbsp;Home</a>
+          
+        </div>  
         <ul class="navbar-nav d-flex">
-          @if (isset($Menus))
-            @foreach ($Menus as $menu)
-              @if(isset($menu['Cart']) && $menu['Cart'] == true)
-                <li class="nav-item"> 
-                  {% comment ''%}
-                  <a class="nav-link" href="{{$menu['href']}}"><i class='far fa-shopping-cart'></i>&nbsp;{{$menu['name']}}</a>
-                  {% endcomment %}
-                </li>
-              @else
-                <li class="nav-item">
-                {% comment ''%}  
-                  <a class="nav-link" href="{{$menu['href']}}">{{$menu['name']}}</a>
-                {% endcomment %}
-                </li>
-              @endif
-            @endforeach
-          @endif
+        {% if cart == True %}
+          <li class="nav-item">          
+            <a class="nav-link" href="{{cartM.href}}"><i class='far fa-shopping-cart'></i>&nbsp;{{cartM.name}}</a>
+          </li>        
+        {% endif %}
+        {% if Menus != null %}
+          {% for menu in Menus %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{menu.href}}">{{menu.name}}</a>            
+            </li>
+          {% endfor %}          
+        {% endif %}
         </ul>
     </nav>
   {% endblock bar %}
