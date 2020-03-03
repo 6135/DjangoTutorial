@@ -6,5 +6,5 @@ app_name = 'main' # here for namespacing of urls.
 urlpatterns = [
     path("", views.homepage, name="homepage"),
     re_path(r'^cat/(?P<cat_id>[0-9]{1,9})/$', views.catPage, name="cat"),
-    path("login/    ",views.login, name="login"),
+    path("login/",views.login, name="login"),
 ]
