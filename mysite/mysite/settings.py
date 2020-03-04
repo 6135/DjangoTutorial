@@ -77,12 +77,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'HOST': '77.68.24.178',
         'NAME': 'db_test',
-        'USER': 'root',
-        'OPTIONS':{
+        'USER': 'diaAbertoUser',
+        'PASSWORD': '*3w7z2dM',
+        'PORT': '3306',
+        'OPTIONS': {
             'autocommit':True,
-        },
-    }
+        }, 
+    } 
 }
 
 
