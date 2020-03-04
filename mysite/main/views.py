@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.urls import *
-
+from .forms import *
 #from .models import Post
 # Create your views here.
 
@@ -24,11 +24,13 @@ def homepage(request):
         })
 
 def login(request):
-
-    return render(request = request,
-        template_name='main/login/login_template.html',
-        context = {},
-        )
+    if request.method == 'POST':
+        form = LogForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = LogForm()
+    return render(request, 'main/login/login_template.html', {'form': form})
 
 def catPage(request, cat_id = None):
     if cat_id != None:
